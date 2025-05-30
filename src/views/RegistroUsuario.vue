@@ -3,7 +3,7 @@
       <header class="header">
         <h1>Sistema de Parqueadero</h1>
       </header>
-  
+
       <div class="login-container">
         <form class="login-form" @submit.prevent="registrarUsuario">
           <h2>¿No tienes cuenta?</h2>
@@ -15,7 +15,7 @@
             placeholder="Ingrese su correo"
             required
           />
-  
+
           <label for="password">Contraseña:</label>
           <input
             type="password"
@@ -24,7 +24,7 @@
             placeholder="Ingrese su contraseña"
             required
           />
-  
+
           <button type="submit">Registrarse</button>
           <h6 style="color: rgb(188, 188, 188);">
             Si ya tienes cuenta ingresa
@@ -32,13 +32,13 @@
           </h6>
         </form>
       </div>
-  
+
       <footer class="footer">
         <p>&copy; 2024 Sistema de Parqueadero. Todos los derechos reservados.</p>
       </footer>
     </div>
   </template>
-  
+
   <script>
   export default {
     name: "RegistroUsuario",
@@ -51,64 +51,64 @@
     methods: {
       // Validar el formato del correo electrónico
       isValidEmail(email) {
-        const emailRegex = /^(a?[0-9]+@(live\.)?uleam\.edu\.ec)$/;
+        const emailRegex = /^(i?[0-9]+@(live\.)?uleam\.edu\.ec)$/;
         return emailRegex.test(email);
       },
-  
+
       // Validar la contraseña (mínimo 8 caracteres, al menos una letra y un número)
       isValidPassword(password) {
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         return passwordRegex.test(password);
       },
-  
+
       // Recuperar usuarios desde localStorage
       getUsers() {
         const users = localStorage.getItem("usersData");
         return users ? JSON.parse(users) : [];
       },
-  
+
       // Guardar usuarios en localStorage
       saveUsers(users) {
         localStorage.setItem("usersData", JSON.stringify(users));
       },
-  
+
       // Registrar un nuevo usuario
       registrarUsuario() {
         if (!this.isValidEmail(this.email)) {
           alert("Por favor, ingresa un correo electrónico válido.");
           return;
         }
-  
+
         if (!this.isValidPassword(this.password)) {
           alert("La contraseña debe tener al menos 8 caracteres, una letra y un número.");
           return;
         }
-  
+
         const users = this.getUsers();
-  
+
         if (users.some((user) => user.email === this.email)) {
           alert("El usuario ya está registrado.");
           return;
         }
-  
+
         const rol = this.email.startsWith("a") ? "admin" : "user";
-  
+
         const newUser = {
           email: this.email,
           password: this.password, // Aquí puedes aplicar hash si es necesario
           rol: rol,
         };
-  
+
         users.push(newUser);
         this.saveUsers(users);
-  
+
         alert("Usuario registrado correctamente.");
         this.$router.push("/login"); // Redirige a la página de inicio de sesión
       },
     },
   };
   </script>
-  
+
 <style scoped>
 /* Estilo global para el fondo y diseño de la página */
 body {
@@ -210,4 +210,3 @@ body {
 }
 </style>
 
-  
