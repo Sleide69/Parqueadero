@@ -5,7 +5,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const app = express();
-const port = 3000; // Cambié el puerto a 3000
+const port = process.env.PORT || 3000; // Usa el puerto del entorno o 3000 por defecto
 
 // Configuración de seguridad con Helmet
 app.use(
@@ -23,8 +23,8 @@ app.use(
 
 // Middleware para CORS y parseo de solicitudes
 app.use(cors());
-app.use(express.json()); // Parsear JSON
-app.use(express.text({ type: 'application/xml' })); // Parsear XML como texto
+app.use(express.json());
+app.use(express.text({ type: 'application/xml' }));
 
 // Crear la carpeta 'reservas' si no existe
 const reservasDir = path.join(__dirname, 'reservas');
@@ -42,13 +42,13 @@ app.post('/api/reservas/json', (req, res) => {
   try {
     console.log('Datos JSON recibidos:', req.body);
 
-    const reservationData = req.body;
-    if (!reservationData.usuario || !reservationData.vehiculo || !reservationData.espacio || !reservationData.fecha) {
+    const { usuario, vehiculo, espacio, fecha } = req.body;
+    if (!usuario || !vehiculo || !espacio || !fecha) {
       return res.status(400).json({ error: 'Faltan datos obligatorios en la reserva.' });
     }
 
-    const filePath = path.join(reservasDir, `${reservationData.usuario}_${Date.now()}_reserva.json`);
-    fs.writeFileSync(filePath, JSON.stringify(reservationData, null, 2));
+    const filePath = path.join(reservasDir, `${usuario}_${Date.now()}_reserva.json`);
+    fs.writeFileSync(filePath, JSON.stringify(req.body, null, 2));
 
     res.status(201).json({ message: 'Reserva JSON guardada exitosamente', path: filePath });
   } catch (error) {
@@ -77,7 +77,7 @@ app.post('/api/reservas/xml', (req, res) => {
   }
 });
 
-// Inicia el servidor en el puerto especificado
+// Iniciar el servidor
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
