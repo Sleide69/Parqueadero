@@ -51,7 +51,7 @@
     methods: {
       // Validar el formato del correo electrónico
       isValidEmail(email) {
-        const emailRegex = /^(i?[0-9]+@(live\.)?uleam\.edu\.ec)$/;
+        const emailRegex = /^(a?[0-9]+@(live\.)?uleam\.edu\.ec)$/;
         return emailRegex.test(email);
       },
 
