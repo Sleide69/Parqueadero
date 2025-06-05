@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/package",
   "name": "vue-project",
   "version": "0.0.0",
   "private": true,
