@@ -3,35 +3,35 @@
       <div class="header">
         <h1>Panel de Administración</h1>
       </div>
-  
+
       <aside class="sidebar">
         <router-link to="/control_acceso">Control de Acceso</router-link>
-        <router-link to="/registro_entrada_salida">Registro de Entrada y Salida</router-link>
+        <router-link to="/registro_entrada_salida">Registro</router-link>
         <router-link to="/historial_admin">Historial</router-link>
         <router-link to="/configuracion_a">Configuración</router-link>
         <router-link to="/soporte_a">Soporte de Reportes</router-link>
         <router-link to="/login">Cerrar Sesión</router-link>
       </aside>
-  
+
       <div class="main">
         <section id="control-acceso">
           <h2>Control de Acceso</h2>
           <p>Gestionar accesos de usuarios y seguridad del sistema.</p>
           <button @click="navigateTo('/control_acceso')">Ir a Control de Acceso</button>
         </section>
-  
+
         <section id="registro_entrada_salida">
           <h2>Registro de Entrada y Salida</h2>
           <p>Verificar el historial de vehículos que han entrado y salido del parqueadero.</p>
           <button @click="navigateTo('/registro_entrada_salida')">Ver Registros</button>
         </section>
-  
+
         <section id="historial">
           <h2>Reservas de Espacios</h2>
           <p>Gestionar y visualizar las reservas de espacios de parqueo.</p>
           <button @click="navigateTo('/historial_admin')">Historial</button>
         </section>
-  
+
         <section id="soporte_a">
           <h2>Soporte</h2>
           <p>Contacta al equipo de soporte para asistencia técnica.</p>
@@ -40,7 +40,7 @@
       </div>
     </div>
   </template>
-  
+
   <script>
   export default {
     name: "Admin",
@@ -113,7 +113,7 @@
     },
   };
   </script>
-  
+
   <style scoped>
   body {
     font-family: "Arial", sans-serif;
@@ -121,7 +121,7 @@
     padding: 0;
     background-color: #f0f0f0;
   }
-  
+
   .header {
     background-color: #333333;
     padding: 15px;
@@ -129,7 +129,7 @@
     color: white;
     font-size: 1.8em;
   }
-  
+
   .sidebar {
     background-color: #333333;
     padding: 0;
@@ -139,7 +139,7 @@
     width: 200px;
     height: 100%;
   }
-  
+
   .sidebar a {
     display: block;
     color: white;
@@ -148,23 +148,23 @@
     text-decoration: none;
     font-size: 1em;
   }
-  
+
   .sidebar a:hover {
     background-color: #00509e;
     color: white;
   }
-  
+
   .main {
     margin-left: 200px;
     padding: 20px;
   }
-  
+
   .dashboard-section {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
   }
-  
+
   .card {
     background-color: white;
     padding: 20px;
@@ -174,16 +174,15 @@
     width: 300px;
     text-align: center;
   }
-  
+
   .card h3 {
     margin: 0;
     font-size: 1.5em;
     color: #333333;
   }
-  
+
   .card p {
     margin-top: 10px;
     color: #555555;
   }
   </style>
-  
